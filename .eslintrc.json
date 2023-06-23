@@ -1,0 +1,45 @@
+// .eslintrc.json
+
+{
+    "env": {
+      "browser": true,
+      "es6": true,
+      "node": true
+    },
+    "parser": "babel-eslint",
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "airbnb",
+      "plugin:prettier/recommended"
+    ],
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
+    },
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "ecmaVersion": 2018,
+      "sourceType": "module"
+    },
+    "plugins": ["react", "react-hooks", "prettier"],
+    "rules": {
+      "react/prefer-stateless-function": 0,
+      "react/jsx-filename-extension": 0,
+      "react/jsx-one-expression-per-line": 0,
+      "no-nested-ternary": 0,
+      "react/react-in-jsx-scope": 0,
+      
+    },
+    "globals": {
+      "React": "writable"
+    }
+  }
+
+//"env" : 활성화하고싶은 환경을 설정해줍니다. 현재 브라우저, node, es6 환경이 활성화되어 있습니다.
+//"parser" : parser 를 설정해줍니다. 설정하지 않을 경우 Espree가 기본 parser 로 설정됩니다. 보통 Espree, Babel-ESLint, @typescript-eslint/parser 을 사용합니다. 저는 Babel-ESLint 를 썼구요. (참고)
+//"extends" : extension 파트. 이 extension 파트에 Prettier 를 꼭 추가해주셔야 Prettier 를 사용할 수 있습니다. 저희는 Airbnb 설정을 사용하기로 했으니 Airbnb 도 추가해줍니다.
+//"rules" : 필요한 설정, 필요없는 설정을 관리하는 파트입니다. 1은 사용하겠다는 뜻, 0은 사용하지 않겠다는 뜻입니다. ESLint 를 사용하다 별로 필요는 없는데 영 성가시게 하는 ESLint 에러가 있다면 0 으로 설정해 비활성화하시면 됩니다. 여기 제가 적어둔 네 줄 중에서, 2~4번째 줄은 eslint-config-prettier 을 위한 설정입니다. no-nested-ternary 는 중첩 삼항연산자를 쓸 경우 에러가 뜨길래 그냥 꺼뒀습니다... 이미 중첩 삼항연산자 써놓은 곳이 많아서...

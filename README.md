@@ -12,6 +12,28 @@ yarn dev
 pnpm dev
 ```
 
+## or
+
+when you run for prod, you must follow below
+```bash
+yarn build
+# after
+yarn start
+```
+
+You can see like and should check ○/λ, and check your functions.
+Route (pages)                              Size     First Load JS
+┌ ○ /404                                   181 B          74.8 kB
+├ λ /api/abc/[123123]                         0 B            74.6 kB
+├ λ /api/guest         .........................................................
+...
+λ: dynamic rendering 
+○: static rendering
+When you use cache and test it, must use build.
+
+
+
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
