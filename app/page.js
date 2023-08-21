@@ -9,7 +9,7 @@ export default async function Home() {
   const client = await connectDB;
   const db = client.db("dbname")
   let result = await db.collection('colname').find().toArray()
-  console.log(result)
+  // console.log(result)
 
 
   return (

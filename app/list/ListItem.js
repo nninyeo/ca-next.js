@@ -115,6 +115,7 @@ export default function ListItem({ result }) {
                     <div className="list-item" id={`list-item-${item._id}`} key={index}>
                         <Link prefetch={false} href={`/detail/${item._id}`}>
                             <h4>{item.title}</h4>
+                            <h4>{item.author}</h4>
                         </Link>
                         <Link href={`/edit/${item._id}`}>✏️</Link>
                         <DetailLink></DetailLink>

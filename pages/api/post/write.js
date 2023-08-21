@@ -1,6 +1,8 @@
 import { connectDB } from "@/util/database"
 import { ObjectId } from "mongodb";
 import { useRouter } from 'next/router';
+import { getServerSession } from "next-auth"
+import { authOptions } from "../auth/[...nextauth]";
 
 export default async function handler(req, res){
 
@@ -20,8 +22,13 @@ export default async function handler(req, res){
     //   }
 
 
+    let session = await getServerSession(req, res, authOptions)
+    if (session) {
+        req.body.author = session.user.name;
+    }
     // mongo에 제시된 js정석적인 방법
     const client = await connectDB;
+
     if(req.method=='POST') {
             if (req.body.title == '') {
             return res.status(500).json('제목써라')
@@ -30,8 +37,7 @@ export default async function handler(req, res){
             await client.connect();
             const db = client.db("dbname")
             const coll = await db.collection('colname')
-
-            const docs = [{title: req.body.title, content: req.body.content}];
+            const docs = [{title: req.body.title, content: req.body.content, author: req.body.author}];
             const result = await coll.insertMany(docs);
 
             console.log(result.insertedIds);
